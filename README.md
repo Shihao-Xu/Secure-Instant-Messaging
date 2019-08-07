@@ -1,3 +1,4 @@
 # Secure-Instant-Messaging
 
-Instant messaging technology originally aim to offer real-time text communication over the Internet. The message transferred are test-based sentences rather than emails. When one party complete thought and press “send”, another party should receive the message immediately. Now, more advanced instant messaging can provide services such as file transfer, video chat. Of course, the security of transmitted message in medium (usually network) is important. Each user would be distributed an identity, and massages between two parties cannot be grasped by a third party.
+Our project is aimed to design and implement a secure Instant Messaging architecture. This implementation is designed in application level and provides integrity, authentication and confidentiality for instant messaging. That means the client can be sure whom he is talking 
+with and received messages are private and same as origin. Authentication is provided by using CA(Certificate Authority) and digital signature. Integrity is provided by digital signatures. And Confidentiality is provided by RSA and DES algorithms.
