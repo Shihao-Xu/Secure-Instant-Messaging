@@ -1,0 +1,45 @@
+  Evaluation of our implementation is divided into two parts: normal mode and defending attacks. 
+In normal mode, the system runs in identical environment and its performances will be evaluated. 
+For defending attacks, we will simulate some situations of internet attacks and analysis whether 
+the system can defend these attacks. 
+
+  A. Normal Mode
+  The running of the system is stable and smooth. CA can provide valid certificates. Two 
+clients can receive messages from each other correctly. From server interface, we can monitor 
+all exchanging packets. The number parts of the ciphertext is encrypted from the message, the 
+rest part is encrypted from digital signature and DES key.By the speed advantage of DES 
+algorithm, sending longer text does not show obvious increment of latency. The rapid updates 
+of DES key makes the ciphertexts for a pair of  same messages are different. That ensures the 
+attackers cannot get part of plaintext from easy analysis. 
+
+  B.Defending attacks
+  1) Release of message contents: 
+     The release of message is the most common passive attack in internet. By eavesdropping 
+the plaintext or compromising the encryption algorithm, attacker can get sensitive and 
+confidential information. In our system, this attack is defended by use of RSA and DES 
+algorithms. All information can be eavesdropped from our system is the messages monitored by 
+communication server. All these messages are well encrypted by DES or RSA algorithm. So, the 
+security of these two algorithms is the security of our system to defend the release of message 
+contents.
+  2) Modification of Message: 
+     Modification of message is simply means that some portion of a legitimate message is 
+altered, or that messages are delayed or reordered, to produce an unauthorized effect. 
+In our system, any modified message should be detected by the client and reply cerresponding 
+error message. 
+  3) Masquerade:
+The Masquerade takes place when one entity pretends to be a different entity.[2] In our 
+system (assume client 1 and 2 are authenticated users and client 3 is attacker), if client 3 
+steals the certificate of 1, and then connect with client 2 by claiming he is client 1. Client 
+2 should detect the masked identity of client 3 and alarm. To simulate this situation, we can 
+simply tick ¡°Masquerade Attack¡± on interface of client 1. Now client 1 will not be able to use 
+its original private key (same as the attacker). However, it still can send message to client 2. 
+Client 2 will find the information retrieved from the digital signature is wrong. Thus, it will 
+detect the attack and alarm. Even if client 2 ignores the alarm and send messages back, the 
+messages cannot be seen by attacker.
+
+
+Cases for out program does not work correctly.
+  1) Input text is not alphabet, number or simple symbols.
+  2) Input text is too long.
+  3) Not follow the steps to run it.
+

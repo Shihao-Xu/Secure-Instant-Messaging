@@ -1,0 +1,60 @@
+  There are basically two major models in our project, one of them is public key and certificate 
+distribution model, and another one is message transmission model. First, we need public key 
+and certificate distribution model to prove the authentication of client A and client B and 
+provide reliable and valid public key for distribution. And then we could use the message 
+transmission model for exchanging public key or digital certificate of each other safely. Client 
+A sends a request which contains its ID and public key to the CA. CA uses MD5 algorithm to hash 
+ID and public key if Certificate Authority believes this information is valid. 
+And then CA encrypts hash value with its private key. CA attaches this code to ID and 
+public key of Client A, and sends this certificate back to Client A. The next step is that Client A sends its own digital certificate to Client B. Then Client B 
+decrypt this certificate with public key of Certificate Authority and getting ID, public key 
+of Client A, and the hash value. To determine the valid of the ID and public key, Client B 
+uses MD5 algorithm to hash same information which was hashed by CA and getting another MD5 
+code of information of Client A. Client B could make sure whether the identity of Client A is 
+same as the data in CA through comparing these two pieces of MD5 code. As the CA is a trusted 
+server in our system, Client B can make sure it is safe to use this public key of A for future 
+communications.The distribution of public key from Client B  to A is the same way¡£
+  
+  We use hybrid encryption to implement following message transmission model. Assume that Client 
+A and Client B already have public key of each other, and shows that Client A 
+sends secure messages to Client B with its digital signature.Client A encrypts plaintext 
+with DES encryption algorithm to get ciphertext of the message. Then A hashes plaintext with 
+MD5 algorithm and  encrypted outcome with its private key to generate a digital 
+signature. And then Client A encrypts DES key and the digital signature with public key of 
+Client B, and attaches this code to ciphertext. A sends ciphertext and attached code together 
+to  B. Client B decrypts the attached code with its private key and gets DES key and digital 
+signature of A. Then B uses this DES key to decrypt the received ciphertext and getting the 
+plaintext. However, the plaintext might be invalid. Thus,  Client B hashes this plaintext with 
+MD5 algorithm to generate a MD5 value. In the meantime, B decrypts the digital signature of A 
+with public key of  A to get another MD5 value. Now, B could check if this message is valid by 
+comparing the two MD5 value.
+
+Possible improvements and extensions to your program:
+To design a totally secure instant messaging application in the future, we need to analyze 
+limitations of our implementation. The first point is the CA should be trustable. If the CA 
+is compromised, Masquerade Attack cannot be detect. Ans our system is weak or unresponsive to 
+following attacks.
+A.	Traffic Analysis
+Traffic Analysis is another type of passive attack besides release of message contents. The 
+opponent could determine the location and identity of communicating hosts and could observe 
+the frequency and length of messages being exchanged. This information might be useful in 
+guessing the nature of the communication that was taking place. To defend this type of 
+attack, the commonly used technique is packet padding. By padding all packets to same length, 
+real length of packets 	will be hidden from analyzers. Unfortunately, this technique will also 
+cause some overhead for each message. But in instant message, padding bits will not be  so 
+long, so packet padding might be useful.
+B.	Denial of Service
+The denial of service prevents or inhibits the normal use or management of communications.
+As our server does not provide access control, any client connected to server might be able 
+to broadcast information to all connected clients. If number of these useless messages are too 
+large, that might causes the server shuts down or client interfaces show many useless messages. 
+One way to defend this kind of attack is access control. By use of login system or more advanced 
+protocols (e.g. Kerberos), only authenticated users can connect with server and use the service 
+of Instant Messaging.
+C.	Brute force Attack
+Although DES algorithm does not have obvious weakness, it is not very safe under Brute Force 
+Attack of high speed computer nowadays. Because the DES key length is not long enough. Better 
+algorithms can overcome the threaten of Brute force Attack, such as 3DES and AES. However, DES 
+key is updated for each message in our system. That makes attackers nearly impossible to 
+compromise all DES keys in our system.
+

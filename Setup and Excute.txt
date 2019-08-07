@@ -1,0 +1,20 @@
+Here we provide detailed guideline for installation and evaluation of our implementation on 
+Windows 10 OS.
+Installation:
+- Install Python 2.7.15 and set system environment appropriately.
+- Download wxpython wrapper.
+Excution:
+- Open four cmd prompts, run CA.py first then open three GUI by running chattool.py in other 
+three cmd prompts.
+- In the first interface, click ¡°I am the server¡±. In other two interfaces, change the client 
+names and click ¡°I am a client¡±. After the server show two new connections, the whole 
+architecture is constructed, and all functions are ready to run.
+- In clients¡¯ interfaces, click ¡°Apply certificate¡±. If you get certificate smoothly from the 
+CA, ¡°You got certificate¡± notifications will appear. Clients¡¯ consoles will show the detailed 
+information of certificates.
+- Then click ¡°Exchange Certificate¡± separately on two clients¡¯ interfaces. That causes the 
+opposite receiving your own certificate. If certificates are checked to be valid, ¡°certificate 
+received¡± notifications will appear, and the system is ready for message exchanging. 
+- Now you can choose one client and type any alphabet, number or symbol in the textbox. Click 
+¡°Send¡±, your typed information will appear on the screen of another side. Ciphertext can be 
+enabled from client interfaces or be monitored from server¡¯s console.
